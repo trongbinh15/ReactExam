@@ -6,6 +6,7 @@ import Header from "./components/common/Header";
 import PageNotFound from "./components/PageNotFound";
 import HomePage from "./components/home/HomePage";
 import { ToastContainer } from "react-toastify";
+import Table from "./components/table/Table";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route path="/table" component={Table} />
         <Route component={PageNotFound} />
       </Switch>
       <ToastContainer autoClose={3000} hideProgressBar />
