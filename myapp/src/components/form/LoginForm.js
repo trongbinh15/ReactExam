@@ -48,7 +48,7 @@ const LoginForm = () => {
             id="InputPassword"
             placeholder="Password"
             pattern=".{6,}"
-            title="Six or more characters"
+            title="Require six or more characters"
             required
           />
         </div>

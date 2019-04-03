@@ -16,7 +16,7 @@ const SignUpForm = () => {
             class="form-control"
             id="InputName"
             placeholder="Enter name"
-            pattern="[A-Za-z]{3}"
+            pattern="[A-Za-z\s\p{L}]{3,}"
             title="Name should only contain characters and at least 3."
             required
           />
@@ -24,11 +24,12 @@ const SignUpForm = () => {
         <div class="form-group">
           <label for="InputEmail">Email address</label>
           <input
-            type="email"
+            type="text"
             class="form-control"
             id="InputEmail"
-            aria-describedby="emailHelp"
             placeholder="Enter email"
+            pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+            title="Invalid email"
             required
           />
         </div>
@@ -40,7 +41,7 @@ const SignUpForm = () => {
             id="InputPassword"
             placeholder="Password"
             pattern=".{6,}"
-            title="Six or more characters"
+            title="Require six or more characters"
             required
           />
         </div>
