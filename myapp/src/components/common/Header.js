@@ -17,6 +17,10 @@ const Header = () => {
         Login
       </NavLink>
       {" | "}
+      <NavLink to="/signup" activeStyle={activeStyle}>
+        Sign up
+      </NavLink>
+      {" | "}
       <NavLink to="/about" activeStyle={activeStyle}>
         Logout
       </NavLink>

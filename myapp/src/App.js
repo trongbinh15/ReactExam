@@ -8,6 +8,7 @@ import HomePage from "./components/home/HomePage";
 import { ToastContainer } from "react-toastify";
 import Table from "./components/table/Table";
 import LoginForm from "./components/form/LoginForm";
+import SignUpForm from "./components/form/SignUpForm";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/table" component={Table} />
         <Route path="/form" component={LoginForm} />
+        <Route path="/signup" component={SignUpForm} />
         <Route component={PageNotFound} />
       </Switch>
       <ToastContainer autoClose={3000} hideProgressBar />

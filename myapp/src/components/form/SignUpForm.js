@@ -1,34 +1,26 @@
 import React from "react";
 
-/*const validateInput = (type, checkingText) => {
-  if (type === "email") {
-  }
-
-  if (type === "password") {
-  }
-};
-
-const handleInput = event => {};
-
-const handleInputValidation = event => {};
-
-const FormError = props => {
-  if (props.isHidden) {
-    return null;
-  }
-  return <div>{props.errorMessage}</div>;
-};
-*/
-
 const handleSubmit = e => {
   e.preventDefault();
   console.log("submit");
 };
 
-const LoginForm = () => {
+const SignUpForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <div class="form-group">
+          <label for="InputName">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="InputName"
+            placeholder="Enter name"
+            pattern="[A-Za-z]{3}"
+            title="Name should only contain characters and at least 3."
+            required
+          />
+        </div>
         <div class="form-group">
           <label for="InputEmail">Email address</label>
           <input
@@ -61,4 +53,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignUpForm;
