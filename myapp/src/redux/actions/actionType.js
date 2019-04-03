@@ -1,0 +1,2 @@
+export const BEGIN_API_CALL = "BEGIN_API_CALL";
+export const COMPLETE_API_CALL = "COMPLETE_API_CALL";

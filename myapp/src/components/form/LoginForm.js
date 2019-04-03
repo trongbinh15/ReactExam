@@ -1,24 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 
-/*const validateInput = (type, checkingText) => {
-  if (type === "email") {
-  }
-
-  if (type === "password") {
-  }
-};
-
-const handleInput = event => {};
-
-const handleInputValidation = event => {};
-
-const FormError = props => {
-  if (props.isHidden) {
-    return null;
-  }
-  return <div>{props.errorMessage}</div>;
-};
-*/
+import { GetData } from "../../firebase/firebase";
+import { bindActionCreators } from "C:/Users/binh.nguyen/AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux";
+import * as apiStatusAction from "../../redux/actions/apiStatusAction";
 
 const handleSubmit = e => {
   e.preventDefault();
@@ -26,6 +11,10 @@ const handleSubmit = e => {
 };
 
 const LoginForm = () => {
+  const data = GetData();
+
+  console.log(data);
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -61,4 +50,19 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      api: bindActionCreators(apiStatusAction.beginApi, dispatch)
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginForm);
