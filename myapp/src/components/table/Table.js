@@ -32,15 +32,22 @@ function Table() {
   }
   return (
     <div className="col-md-8 m-4">
-      <div className="m-2 input-group-prepend">
-        <span>
-          <span class="input-group-text">Filter:</span>
-          <input
-            type="text"
-            className="form-control"
-            onChange={e => handleFilter(e.target.value)}
-          />
-        </span>
+      <div className="input-group mb-3">
+        <div className="input-group-prepend">
+          <span>
+            <span class="input-group-text" id="basic-addon1">
+              Filter:
+            </span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Title"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+              onChange={e => handleFilter(e.target.value)}
+            />
+          </span>
+        </div>
       </div>
       <table id="customers" className="table table-bordered table-hover">
         <thead className=" thead-light">
