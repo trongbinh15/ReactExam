@@ -14,11 +14,11 @@ const SignUpForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <div class="form-group">
-          <label for="InputName">Name</label>
+        <div className="form-group">
+          <label htmlFor="InputName">Name</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="InputName"
             placeholder="Enter name"
             pattern="[A-Za-z\s\p{L}]{3,}"
@@ -27,11 +27,11 @@ const SignUpForm = () => {
             required
           />
         </div>
-        <div class="form-group">
-          <label for="InputEmail">Email address</label>
+        <div className="form-group">
+          <label htmlFor="InputEmail">Email address</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="InputEmail"
             placeholder="Enter email"
             pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
@@ -40,11 +40,11 @@ const SignUpForm = () => {
             required
           />
         </div>
-        <div class="form-group">
-          <label for="InputPassword">Password</label>
+        <div className="form-group">
+          <label htmlFor="InputPassword">Password</label>
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             id="InputPassword"
             placeholder="Password"
             pattern=".{6,}"
@@ -54,7 +54,7 @@ const SignUpForm = () => {
           />
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Login
         </button>
       </form>

@@ -12,7 +12,7 @@ import SignUpForm from "./components/form/SignUpForm";
 
 function App() {
   return (
-    <div class="container-fluid">
+    <div className="container-fluid">
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />

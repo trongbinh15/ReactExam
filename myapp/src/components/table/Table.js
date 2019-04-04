@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Spinner from "../common/Spinner";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
+import * as apiStatusAction from "../../redux/actions/apiStatusAction";
 
 function Table() {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,12 +39,12 @@ function Table() {
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span>
-            <span class="input-group-text" id="basic-addon1">
+            <span className="input-group-text" id="basic-addon1">
               Filter:
             </span>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="Title"
               aria-label="Username"
               aria-describedby="basic-addon1"
@@ -77,4 +81,25 @@ function Table() {
   );
 }
 
-export default Table;
+function mapStateToProps(state) {
+  return {
+    users: state.users.lenth === 0 ? [] : state.users
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      loadUsers: bindActionCreators(apiStatusAction.loadUsers, dispatch)
+    }
+  };
+}
+
+Table.propTypes = {
+  users: PropTypes.array.isRequired
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Table);

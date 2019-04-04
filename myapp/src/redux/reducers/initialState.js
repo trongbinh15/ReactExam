@@ -1,3 +1,9 @@
 export default {
-  apiCall: 0
+  fetching: false,
+  users: [],
+  user: {
+    username: "",
+    password: "",
+    email: ""
+  }
 };
