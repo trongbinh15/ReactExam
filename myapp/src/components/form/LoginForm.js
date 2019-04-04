@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { GetData } from "../../firebase/firebase";
-import { bindActionCreators } from "C:/Users/binh.nguyen/AppData/Local/Microsoft/TypeScript/3.3/node_modules/redux";
+import { bindActionCreators } from "redux";
 import * as apiStatusAction from "../../redux/actions/apiStatusAction";
 
 const handleSubmit = e => {

@@ -3,19 +3,22 @@ import {
   UPDATE_USER,
   UPDATE_NAME,
   UPDATE_EMAIL,
-  UPDATE_PWD
+  UPDATE_PWD,
+  LOAD_USERS_SUCCESS
 } from "../actions/actionType";
 
-export default function userReducer(state = initialState.user, action) {
+export default function userReducer(state = initialState.users, action) {
   switch (action.type) {
     case UPDATE_USER:
-      return { ...state, state: action.payload };
+      return action.user;
     case UPDATE_NAME:
-      return { ...state, username: action.payload };
+      return { ...state, username: action.name };
     case UPDATE_EMAIL:
-      return { ...state, email: action.payload };
+      return { ...state, email: action.email };
     case UPDATE_PWD:
-      return { ...state, password: action.payload };
+      return { ...state, email: action.password };
+    case LOAD_USERS_SUCCESS:
+      return action.payload;
     default:
       return state;
   }
