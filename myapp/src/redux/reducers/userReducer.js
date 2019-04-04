@@ -7,7 +7,7 @@ import {
   LOAD_USERS_SUCCESS
 } from "../actions/actionType";
 
-export default function userReducer(state = initialState.users, action) {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_USER:
       return action.user;
@@ -18,7 +18,8 @@ export default function userReducer(state = initialState.users, action) {
     case UPDATE_PWD:
       return { ...state, email: action.password };
     case LOAD_USERS_SUCCESS:
-      return action.payload;
+      console.log(state,action);
+      return { ...state, users: action.payload };
     default:
       return state;
   }

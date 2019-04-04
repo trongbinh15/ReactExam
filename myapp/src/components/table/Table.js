@@ -12,11 +12,8 @@ class Table extends React.Component {
   };
   componentDidMount() {
     const { users, actions } = this.props;
-
     if (users.length === 0) {
-      actions.loadUsers().catch(error => {
-        alert("Loading user failed" + error);
-      });
+      actions.loadUsers();
     }
   }
 
@@ -33,6 +30,11 @@ class Table extends React.Component {
     );
   }
   render() {
+    const { users, actions } = this.props;
+    console.log(this.props);
+    if (users.length === 0) {
+      return(<div>No data</div>);
+    }
     return (
       <div className="col-md-8 m-4">
         <div className="input-group mb-3">
@@ -61,7 +63,7 @@ class Table extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.data
+            {users
               .filter(item => {
                 return item.title.includes(this.state.filter);
               })
@@ -83,8 +85,11 @@ class Table extends React.Component {
 
 function mapStateToProps(state) {
   console.log("mapStateToProps - state", state);
+  const {userReducer} = state;
+  console.log(userReducer);
   return {
-    users: state.users.length === 0 ? [] : state.users
+    
+    users: userReducer.users.length === 0 ? [] : userReducer.users
   };
 }
 

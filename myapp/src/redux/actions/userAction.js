@@ -20,19 +20,19 @@ export function updatePwd(pwd) {
 }
 
 export function loadUserSuccess(users) {
+  console.log(users);
   return { type: LOAD_USERS_SUCCESS, payload: users };
 }
 
 export function loadUsers() {
-  debugger;
   return function(dispatch) {
-    dispatch(beginApi());
-    return ToDoApi.loadTodos()
-      .then(users => {
-        dispatch(loadUserSuccess, users);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    // dispatch(beginApi());
+    fetch("https://jsonplaceholder.typicode.com/todos")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      dispatch(loadUserSuccess(data));
+    });
+      
   };
 }
