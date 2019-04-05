@@ -7,16 +7,13 @@ import { bindActionCreators } from "redux";
 
 class Table extends React.Component {
   state = {
-    filter: "",
-    data: null
+    filter: ""
   };
   componentDidMount() {
     const { users, actions } = this.props;
 
     if (users.length === 0) {
-      actions.loadUsers().catch(error => {
-        alert("Loading user failed" + error);
-      });
+      actions.loadUsers();
     }
   }
 
@@ -33,6 +30,11 @@ class Table extends React.Component {
     );
   }
   render() {
+    const { users, actions } = this.props;
+    console.log(this.props);
+    if (users.length === 0) {
+      return <div></div>;
+    }
     return (
       <div className="col-md-8 m-4">
         <div className="input-group mb-3">
@@ -61,7 +63,7 @@ class Table extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.data
+            {this.props.users
               .filter(item => {
                 return item.title.includes(this.state.filter);
               })
@@ -83,6 +85,7 @@ class Table extends React.Component {
 
 function mapStateToProps(state) {
   console.log("mapStateToProps - state", state);
+  state = state.userReducer;
   return {
     users: state.users.length === 0 ? [] : state.users
   };

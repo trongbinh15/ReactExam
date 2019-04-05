@@ -24,15 +24,14 @@ export function loadUserSuccess(users) {
 }
 
 export function loadUsers() {
-  debugger;
-  return function(dispatch) {
+
+  return function (dispatch) {
     dispatch(beginApi());
-    return ToDoApi.loadTodos()
-      .then(users => {
-        dispatch(loadUserSuccess, users);
-      })
-      .catch(error => {
-        console.log(error);
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        dispatch(loadUserSuccess(data));
       });
   };
 }
