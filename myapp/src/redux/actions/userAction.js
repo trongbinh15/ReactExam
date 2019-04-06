@@ -2,10 +2,11 @@ import {
   UPDATE_NAME,
   UPDATE_EMAIL,
   UPDATE_PWD,
-  LOAD_USERS_SUCCESS
+  LOAD_USERS_SUCCESS,
+  BEGIN_LOAD_USER
 } from "./actionType";
-import { beginApi } from "./apiStatusAction";
-import * as ToDoApi from "../../api/Todo";
+
+
 
 export function updateName(name) {
   return { type: UPDATE_NAME, payload: name };
@@ -23,15 +24,21 @@ export function loadUserSuccess(users) {
   return { type: LOAD_USERS_SUCCESS, payload: users };
 }
 
+export function beginLoadUser() {
+  return { type: BEGIN_LOAD_USER }
+}
+
 export function loadUsers() {
 
   return function (dispatch) {
-    dispatch(beginApi());
+    dispatch(beginLoadUser());
+
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then(response => response.json())
       .then(data => {
-        console.log(data);
-        dispatch(loadUserSuccess(data));
+        setTimeout(() => {
+          dispatch(loadUserSuccess(data));
+        }, 2000);
       });
   };
 }

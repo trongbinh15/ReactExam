@@ -4,3 +4,4 @@ export const UPDATE_USER = "UPDATE_USER";
 export const UPDATE_NAME = "UPDATE_NAME";
 export const UPDATE_EMAIL = "UPDATE_EMAIL";
 export const UPDATE_PWD = "UPDATE_PWD";
+export const BEGIN_LOAD_USER = 'BEGIN_LOAD_USER';

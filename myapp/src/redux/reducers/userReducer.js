@@ -4,7 +4,8 @@ import {
   UPDATE_NAME,
   UPDATE_EMAIL,
   UPDATE_PWD,
-  LOAD_USERS_SUCCESS
+  LOAD_USERS_SUCCESS,
+  BEGIN_LOAD_USER
 } from "../actions/actionType";
 
 export default function userReducer(state = initialState, action) {
@@ -17,8 +18,10 @@ export default function userReducer(state = initialState, action) {
       return { ...state, email: action.email };
     case UPDATE_PWD:
       return { ...state, email: action.password };
+    case BEGIN_LOAD_USER:
+      return { ...state, fetching: true };
     case LOAD_USERS_SUCCESS:
-      return { ...state, users: action.payload };
+      return { ...state, users: action.payload, fetching: false };
     default:
       return state;
   }

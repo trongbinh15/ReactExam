@@ -13,25 +13,31 @@ class Table extends React.Component {
     const { users, actions } = this.props;
 
     if (users.length === 0) {
-      actions.loadUsers();
+
+      setTimeout(() => {
+        actions.loadUsers();
+        this.setState((prevState, value) => {
+          return { isLoading: !prevState.isLoading }
+        });
+      }, 2000);
+
     }
   }
 
   handleFilter = e => {
-    console.log(e);
     this.setState({ filter: e });
   };
 
-  if(isLoading) {
-    return (
-      <>
-        <Spinner />
-      </>
-    );
-  }
+
   render() {
-    const { users, actions } = this.props;
-    console.log(this.props);
+    const { users, fetching } = this.props;
+    if (fetching) {
+      return (
+        <>
+          <Spinner />
+        </>
+      );
+    }
     if (users.length === 0) {
       return <div></div>;
     }
@@ -85,22 +91,23 @@ class Table extends React.Component {
 
 function mapStateToProps(state) {
   console.log("mapStateToProps - state", state);
-  state = state.userReducer;
+
   return {
-    users: state.users.length === 0 ? [] : state.users
+    users: state.userReducer.users.length === 0 ? [] : state.userReducer.users,
+    fetching: state.userReducer.fetching
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      loadUsers: bindActionCreators(userAction.loadUsers, dispatch)
+      loadUsers: bindActionCreators(userAction.loadUsers, dispatch),
     }
   };
 }
 
 Table.propTypes = {
-  users: PropTypes.array.isRequired
+  users: PropTypes.array.isRequired,
 };
 
 export default connect(

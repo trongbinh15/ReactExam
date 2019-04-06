@@ -35,7 +35,7 @@ export function GetData() {
         });
       });
 
-      console.log(expenses);
+
       return expenses;
     });
 }
