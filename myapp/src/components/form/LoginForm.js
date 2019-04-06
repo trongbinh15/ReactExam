@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { GetData } from "../../firebase/firebase";
@@ -11,9 +11,14 @@ const handleSubmit = e => {
 };
 
 const LoginForm = () => {
-  const data = GetData();
+  useEffect(() => {
+    async function fetchData() {
+      const data = await GetData();
+      console.log(data);
+    }
+    fetchData();
+  });
 
-  console.log(data);
 
   return (
     <>
@@ -62,7 +67,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LoginForm);
+export default LoginForm;

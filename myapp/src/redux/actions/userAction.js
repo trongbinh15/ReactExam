@@ -5,6 +5,7 @@ import {
   LOAD_USERS_SUCCESS,
   BEGIN_LOAD_USER
 } from "./actionType";
+import { GetData } from "../../firebase/firebase";
 
 
 
@@ -33,12 +34,20 @@ export function loadUsers() {
   return function (dispatch) {
     dispatch(beginLoadUser());
 
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then(response => response.json())
-      .then(data => {
-        setTimeout(() => {
-          dispatch(loadUserSuccess(data));
-        }, 2000);
-      });
+    const users = GetData();
+
+    console.log(users);
+
+    setTimeout(() => {
+      dispatch(loadUserSuccess(GetData()));
+    }, 1500);
+
+    // fetch("https://jsonplaceholder.typicode.com/todos")
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     setTimeout(() => {
+    //       dispatch(loadUserSuccess(data));
+    //     }, 1500);
+    //   });
   };
 }

@@ -35,7 +35,6 @@ export function GetData() {
         });
       });
 
-
       return expenses;
     });
 }

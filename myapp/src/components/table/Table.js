@@ -13,13 +13,8 @@ class Table extends React.Component {
     const { users, actions } = this.props;
 
     if (users.length === 0) {
+      actions.loadUsers();
 
-      setTimeout(() => {
-        actions.loadUsers();
-        this.setState((prevState, value) => {
-          return { isLoading: !prevState.isLoading }
-        });
-      }, 2000);
 
     }
   }
@@ -64,8 +59,9 @@ class Table extends React.Component {
           <thead className=" thead-light">
             <tr>
               <th>Id</th>
-              <th>Title</th>
-              <th>Complete</th>
+              <th>Email</th>
+              <th>Name</th>
+              <th>Password</th>
             </tr>
           </thead>
           <tbody>
