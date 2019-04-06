@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Upload } from "../../firebase/firebase";
+
 
 const SignUpForm = () => {
   const [name, setName] = useState("");
@@ -8,7 +8,7 @@ const SignUpForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    Upload(email, pwd, name);
+
   };
 
   return (

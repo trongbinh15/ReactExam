@@ -12,31 +12,6 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-export function Upload(email, pwd, name) {
-  database.ref("accounts").push({
-    email: email,
-    password: pwd,
-    name: name,
-    createdAt: new Date()
-  });
-}
 
-export function GetData() {
-  database
-    .ref("accounts")
-    .once("value")
-    .then(snapshot => {
-      const expenses = [];
-
-      snapshot.forEach(childSnapshot => {
-        expenses.push({
-          id: childSnapshot.key,
-          ...childSnapshot.val()
-        });
-      });
-
-      return expenses;
-    });
-}
 
 export default database;

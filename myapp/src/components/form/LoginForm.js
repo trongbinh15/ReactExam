@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
-import { GetData } from "../../firebase/firebase";
+import database from "../../firebase/firebase";
 import { bindActionCreators } from "redux";
 import * as apiStatusAction from "../../redux/actions/apiStatusAction";
 
@@ -10,13 +10,26 @@ const handleSubmit = e => {
   console.log("submit");
 };
 
+
+
 const LoginForm = () => {
+  const [data, setData] = useState(null);
+
   useEffect(() => {
-    async function fetchData() {
-      const data = await GetData();
-      console.log(data);
-    }
-    fetchData();
+    database
+      .ref("accounts")
+      .once("value")
+      .then(snapshot => {
+        const expenses = [];
+        snapshot.forEach(childSnapshot => {
+          expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+          });
+        });
+
+        setData(expenses);
+      });
   });
 
 

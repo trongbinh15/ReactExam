@@ -5,7 +5,7 @@ import {
   LOAD_USERS_SUCCESS,
   BEGIN_LOAD_USER
 } from "./actionType";
-import { GetData } from "../../firebase/firebase";
+
 
 
 
