@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import * as userAction from "../../redux/actions/userAction";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
+import { Redirect, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 class LoginForm extends React.Component {
   state = {
@@ -26,14 +28,23 @@ class LoginForm extends React.Component {
       u => u.email === email && u.password === password
     );
     if (result.length > 0) {
-      console.log("Đăng nhập thành công!");
+      toast.success("Login success!");
       actions.setCurrentUser({ email: email, password: password });
+    } else {
+      toast.warn("Login fail");
     }
   };
 
   render() {
+    if (!this.props.logging) {
+      return <Redirect to="/home" />;
+    }
+    if (this.props.users.length === 0) {
+      return <div />;
+    }
     return (
       <>
+        <h2>Login</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="InputEmail">Email address</label>
@@ -54,8 +65,6 @@ class LoginForm extends React.Component {
               className="form-control"
               id="InputPassword"
               placeholder="Password"
-              pattern=".{6,}"
-              title="Require six or more characters"
               onChange={e => this.setState({ password: e.target.value })}
               required
             />
@@ -64,6 +73,9 @@ class LoginForm extends React.Component {
           <button type="submit" className="btn btn-primary">
             Login
           </button>
+          <Link to="/signup">
+            <button className="btn btn-primary">Sign up</button>
+          </Link>
         </form>
       </>
     );
@@ -77,7 +89,8 @@ LoginForm.propTypes = {
 function mapStateToProps(state) {
   return {
     users: state.userReducer.users,
-    currentUser: state.userReducer.currentUser
+    currentUser: state.userReducer.currentUser,
+    logging: state.userReducer.logging
   };
 }
 

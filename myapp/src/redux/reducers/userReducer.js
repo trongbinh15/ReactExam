@@ -8,7 +8,9 @@ import {
   BEGIN_LOAD_USER,
   BEGIN_CREATE_USER,
   CREATE_USER_SUCCESS,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  LOGIN_SUCCESS,
+  LOGOUT
 } from "../actions/actionType";
 
 export default function userReducer(state = initialState, action) {
@@ -31,6 +33,10 @@ export default function userReducer(state = initialState, action) {
       return { ...state, creating: false };
     case SET_CURRENT_USER:
       return { ...state, currentUser: action.payload };
+    case LOGIN_SUCCESS:
+      return { ...state, logging: false };
+    case LOGOUT:
+      return { ...state, logging: true, currentUser: {} };
     default:
       return state;
   }

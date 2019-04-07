@@ -6,7 +6,9 @@ import {
   BEGIN_LOAD_USER,
   BEGIN_CREATE_USER,
   CREATE_USER_SUCCESS,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  LOGIN_SUCCESS,
+  LOGOUT
 } from "./actionType";
 
 import database from "../../firebase/firebase";
@@ -84,5 +86,12 @@ export function createUser(newUser) {
 export function setCurrentUser(curUser) {
   return function(dispatch) {
     dispatch({ type: SET_CURRENT_USER, payload: curUser });
+    dispatch({ type: LOGIN_SUCCESS });
+  };
+}
+
+export function logOut() {
+  return function(dispatch) {
+    dispatch({ type: LOGOUT });
   };
 }

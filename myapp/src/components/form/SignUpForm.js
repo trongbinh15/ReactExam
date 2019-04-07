@@ -2,6 +2,7 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as userAction from "../../redux/actions/userAction";
+import { toast } from "react-toastify";
 
 class SignUpForm extends React.Component {
   state = {
@@ -19,6 +20,7 @@ class SignUpForm extends React.Component {
       email: this.state.email,
       password: this.state.password
     });
+    toast.success("Sign up success");
   };
   render() {
     if (this.props.creating) {
@@ -26,6 +28,7 @@ class SignUpForm extends React.Component {
     }
     return (
       <>
+        <h2>Sign up</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="InputName">Name</label>
@@ -68,7 +71,7 @@ class SignUpForm extends React.Component {
           </div>
 
           <button type="submit" className="btn btn-primary">
-            Login
+            Submit
           </button>
         </form>
       </>
