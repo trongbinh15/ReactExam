@@ -15,6 +15,8 @@ const handleSubmit = e => {
 const LoginForm = () => {
   const [data, setData] = useState(null);
 
+  // khúc này sửa
+
   useEffect(() => {
     database
       .ref("accounts")

@@ -47,8 +47,8 @@ class Table extends React.Component {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Title"
-                aria-label="Username"
+                placeholder="Email"
+                
                 aria-describedby="basic-addon1"
                 onChange={e => this.handleFilter(e.target.value)}
               />
@@ -67,14 +67,15 @@ class Table extends React.Component {
           <tbody>
             {this.props.users
               .filter(item => {
-                return item.title.includes(this.state.filter);
+                return item.email.includes(this.state.filter);
               })
               .map((item, index) => {
                 return (
                   <tr key={index}>
                     <td>{item.id}</td>
-                    <td>{item.title}</td>
-                    <td>{item.completed ? "Completed" : "Not completed"}</td>
+                    <td>{item.email}</td>
+                    <td>{item.name}</td>
+                    <td>{item.password}</td>
                   </tr>
                 );
               })}

@@ -6,7 +6,7 @@ import {
   BEGIN_LOAD_USER
 } from "./actionType";
 
-
+import database from "../../firebase/firebase";
 
 
 export function updateName(name) {
@@ -34,12 +34,25 @@ export function loadUsers() {
   return function (dispatch) {
     dispatch(beginLoadUser());
 
-    const users = GetData();
+    let users=null;
 
-    console.log(users);
+    database
+      .ref("accounts")
+      .once("value")
+      .then(snapshot => {
+        const expenses = [];
+        snapshot.forEach(childSnapshot => {
+          expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+          });
+        });
+
+        users=expenses;
+      });
 
     setTimeout(() => {
-      dispatch(loadUserSuccess(GetData()));
+      dispatch(loadUserSuccess(users));
     }, 1500);
 
     // fetch("https://jsonplaceholder.typicode.com/todos")
