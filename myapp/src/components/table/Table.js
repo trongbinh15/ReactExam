@@ -14,12 +14,11 @@ class Table extends React.Component {
 
     if (users.length === 0) {
       actions.loadUsers();
-
-
     }
   }
 
   handleFilter = e => {
+    console.log(e);
     this.setState({ filter: e });
   };
 
@@ -48,7 +47,7 @@ class Table extends React.Component {
                 type="text"
                 className="form-control"
                 placeholder="Email"
-                
+
                 aria-describedby="basic-addon1"
                 onChange={e => this.handleFilter(e.target.value)}
               />

@@ -3,11 +3,13 @@ import {
   UPDATE_EMAIL,
   UPDATE_PWD,
   LOAD_USERS_SUCCESS,
-  BEGIN_LOAD_USER
+  BEGIN_LOAD_USER,
+  BEGIN_CREATE_USER,
+  CREATE_USER_SUCCESS,
+  SET_CURRENT_USER
 } from "./actionType";
 
 import database from "../../firebase/firebase";
-
 
 export function updateName(name) {
   return { type: UPDATE_NAME, payload: name };
@@ -26,15 +28,22 @@ export function loadUserSuccess(users) {
 }
 
 export function beginLoadUser() {
-  return { type: BEGIN_LOAD_USER }
+  return { type: BEGIN_LOAD_USER };
+}
+
+export function beginCreateUser() {
+  return { type: BEGIN_CREATE_USER };
+}
+
+export function createUserSuccess() {
+  return { type: CREATE_USER_SUCCESS };
 }
 
 export function loadUsers() {
-
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(beginLoadUser());
 
-    let users=null;
+    let users = null;
 
     database
       .ref("accounts")
@@ -48,19 +57,32 @@ export function loadUsers() {
           });
         });
 
-        users=expenses;
+        users = expenses;
       });
 
     setTimeout(() => {
       dispatch(loadUserSuccess(users));
     }, 1500);
+  };
+}
 
-    // fetch("https://jsonplaceholder.typicode.com/todos")
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     setTimeout(() => {
-    //       dispatch(loadUserSuccess(data));
-    //     }, 1500);
-    //   });
+export function createUser(newUser) {
+  return function(dispatch) {
+    dispatch(beginCreateUser());
+    database.ref("accounts").push({
+      email: newUser.email,
+      password: newUser.password,
+      name: newUser.name,
+      createdAt: new Date()
+    });
+    setTimeout(() => {
+      dispatch(createUserSuccess());
+    }, 1500);
+  };
+}
+
+export function setCurrentUser(curUser) {
+  return function(dispatch) {
+    dispatch({ type: SET_CURRENT_USER, payload: curUser });
   };
 }
