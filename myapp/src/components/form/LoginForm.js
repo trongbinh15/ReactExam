@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 import { Redirect, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import Spinner from "../common/Spinner";
 
 class LoginForm extends React.Component {
   state = {
@@ -36,10 +37,18 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    if (!this.props.logging) {
+    const { fetching, logging, users } = this.props;
+    if (fetching) {
+      return (
+        <>
+          <Spinner />
+        </>
+      );
+    }
+    if (!logging) {
       return <Redirect to="/home" />;
     }
-    if (this.props.users.length === 0) {
+    if (users.length === 0) {
       return <div />;
     }
     return (
@@ -90,7 +99,8 @@ function mapStateToProps(state) {
   return {
     users: state.userReducer.users,
     currentUser: state.userReducer.currentUser,
-    logging: state.userReducer.logging
+    logging: state.userReducer.logging,
+    fetching: state.userReducer.fetching
   };
 }
 
