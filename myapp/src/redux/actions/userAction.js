@@ -42,7 +42,7 @@ export function createUserSuccess() {
 }
 
 export function loadUsers() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(beginLoadUser());
 
     let users = null;
@@ -64,12 +64,12 @@ export function loadUsers() {
 
     setTimeout(() => {
       dispatch(loadUserSuccess(users));
-    }, 1500);
+    }, 2000);
   };
 }
 
 export function createUser(newUser) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch(beginCreateUser());
     database.ref("accounts").push({
       email: newUser.email,
@@ -84,14 +84,14 @@ export function createUser(newUser) {
 }
 
 export function setCurrentUser(curUser) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch({ type: SET_CURRENT_USER, payload: curUser });
     dispatch({ type: LOGIN_SUCCESS });
   };
 }
 
 export function logOut() {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch({ type: LOGOUT });
   };
 }

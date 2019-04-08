@@ -15,7 +15,6 @@ class LoginForm extends React.Component {
 
   componentDidMount() {
     const { users, actions } = this.props;
-
     if (users.length === 0) {
       actions.loadUsers();
     }
@@ -47,9 +46,6 @@ class LoginForm extends React.Component {
     }
     if (!logging) {
       return <Redirect to="/home" />;
-    }
-    if (users.length === 0) {
-      return <div />;
     }
     return (
       <>
